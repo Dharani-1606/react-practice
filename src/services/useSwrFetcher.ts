@@ -3,6 +3,8 @@ import useSWRMutation from "swr/mutation";
 
 import apiService from "./apiService";
 
+// https://medium.com/@jayashakthiperera/power-of-swr-with-react-useswrmutation-61a0aa82d958
+
 // Function to handle GET request
 const getFetcher = async (url: string) => {
     const response = await apiService.get(url);

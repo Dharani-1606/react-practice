@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import MessageExampleMessage from './component/MessageExampleMessage'
 import Demo from './component/Demo'
+import PostList from './component/PostList'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,7 +12,7 @@ function App() {
   return (
     <>
       <MessageExampleMessage />
-      <Demo />
+      <PostList />
     </>
   )
 }

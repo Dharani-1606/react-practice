@@ -1,0 +1,72 @@
+.datetime-picker-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: Arial, sans-serif;
+  align-items: flex-start;
+  display: flex;
+}
+
+.datetime-input {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 220px;
+}
+
+/* Force calendar popup to show date and time side by side */
+.react-datepicker {
+  display: flex;
+  flex-direction: row; /* Forces calendar and time to sit side-by-side */
+}
+
+.react-datepicker__time-container {
+  width: auto;
+  /* padding-left: 8px; */
+  max-height: 230px;
+  overflow-y: auto;
+  overflow: hidden; /* removes outer scrollbar */
+  /* max-height: none; */
+}
+
+.react-datepicker__time {
+  width: auto;
+}
+
+.react-datepicker__time-box {
+  width: auto;
+}
+
+/* Prevent time list from being extremely long */
+/* .react-datepicker__time-container {
+  max-height: 230px;
+  overflow-y: auto;
+} */
+
+.react-datepicker__time {
+  max-height: 230px;
+  overflow-y: auto;
+}
+
+/* ✅ Outer time container should not scroll */
+/* .react-datepicker__time-container {
+  overflow: hidden;
+  max-height: none;
+} */
+
+/* ✅ Inner time list should scroll */
+.react-datepicker__time {
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: thin; /* for Firefox */
+}
+
+/* Optional: Webkit scrollbar styling */
+.react-datepicker__time::-webkit-scrollbar {
+  width: 6px;
+}
+.react-datepicker__time::-webkit-scrollbar-thumb {
+  background: #ff0000;
+  border-radius: 4px;
+}

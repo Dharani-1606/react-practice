@@ -73,3 +73,5 @@ export default tseslint.config([
   },
 ])
 ```
+# References
+- [Integrate ArcGIS JavaScript API With React](https://www.esri-ireland.ie/en-ie/resource-centre/we-talk-tech/integrating-the-arcgis-javascript-api-with-react)

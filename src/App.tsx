@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import IndiaMap from './map/IndiaMap'
+// import IndiaMapSimpleRenderer from './map/IndiaMapSimpleRenderer'
 // import MapComponent from './map/MapComponent'
 // import MessageExampleMessage from './component/MessageExampleMessage'
 // import HiearchyTree from './component/HiearchyTree'
@@ -12,7 +13,7 @@ function App() {
     <>
       {/* <MessageExampleMessage /> */}
       {/* <HiearchyTree /> */}
-      <IndiaMap />
+      {/* <IndiaMap /> */}
     </>
   )
 }

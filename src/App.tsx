@@ -1,8 +1,5 @@
 import './App.css'
-// import Heatmap from './map/Heatmap'
-import MapComponent from './map/MapComponent'
-// import MessageExampleMessage from './component/MessageExampleMessage'
-// import HiearchyTree from './component/HiearchyTree'
+import IndiaMap from './map/IndiaMap'
 
 function App() {
 
@@ -10,7 +7,7 @@ function App() {
     <>
       {/* <MessageExampleMessage /> */}
       {/* <HiearchyTree /> */}
-      <MapComponent />
+      <IndiaMap />
     </>
   )
 }

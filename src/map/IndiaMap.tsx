@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import ReactDOM from "react-dom/client";
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Graphic from "@arcgis/core/Graphic";
 import Point from "@arcgis/core/geometry/Point";
+import { PopupContent } from "../component/PopupContent";
 
 const DARK_COLORS = {
   blue: [0, 82, 204, 0.95],
@@ -165,17 +167,14 @@ function IndiaMap() {
       renderer: makeRenderUniqueRenderer,
       popupTemplate: {
         title: "{state_name}",
-        content: [
-          {
-            type: "fields",
-            fieldInfos: [
-              { fieldName: "iso_code", label: "ISO Code" },
-              { fieldName: "capital", label: "Capital" },
-              { fieldName: "population", label: "Population" },
-              { fieldName: "region", label: "Region" },
-            ]
-          }
-        ]
+        content: (event: any) => {
+          const container = document.createElement("div");
+          const root = ReactDOM.createRoot(container);
+          root.render(
+            <PopupContent feature={event} />
+          );
+          return container;
+        }
       },
       featureReduction: {
         type: "cluster",

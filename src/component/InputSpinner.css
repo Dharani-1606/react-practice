@@ -1,0 +1,52 @@
+.spinner-input-section{
+  display: flex;
+  margin: 2rem
+}
+
+
+.input-spinner {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #3e8bd7;
+  border-radius: 0;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.input-spinner button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: #70a5da;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0;
+}
+
+.input-spinner button:hover {
+  background: #e8e8e8;
+}
+
+.input-spinner input {
+  width: 60px;
+  height: 36px;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* Hide default browser spinner */
+.input-spinner input::-webkit-outer-spin-button,
+.input-spinner input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-spinner input[type="number"] {
+  -moz-appearance: textfield;
+}

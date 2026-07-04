@@ -3,10 +3,24 @@ import { createRoot } from 'react-dom/client'
 // import App from './App.tsx'
 import 'semantic-ui-css/semantic.min.css'
 import './index.css'
-import GroupLayerDemo from './map/GroupLayerDemo.tsx'
+// import IndiaLocationMap from './map/IndiaLocationMap'
+// import ArcgisClassBreak from './map/ArcgisClassBreak'
+import ClassBReakDemo from './map/ClassBReakDemo'
+// import ElevationDemo from './map/elevation/ElevationDemo'
+// import IndiaMap from './map/IndiaMap'
+// import SpinnerInputField from './component/SpinnerInputField'
+// import GroupLayerDemo from './map/GroupLayerDemo.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <GroupLayerDemo />
+    {/* <GroupLayerDemo /> */}
+    {/* <IndiaLocationMap /> */}
+    {/* <ArcgisClassBreak /> */}
+    <ClassBReakDemo />
+    {/* <ElevationDemo /> */}
+    {/* <IndiaMap /> */}
+    {/* <div className='spinner-input-section'>
+    <SpinnerInputField />
+    </div> */}
   </StrictMode>,
 )

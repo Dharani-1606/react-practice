@@ -5,7 +5,9 @@ import 'semantic-ui-css/semantic.min.css'
 import './index.css'
 // import IndiaLocationMap from './map/IndiaLocationMap'
 // import ArcgisClassBreak from './map/ArcgisClassBreak'
-import ClassBReakDemo from './map/ClassBReakDemo'
+// import ClassBReakDemo from './map/ClassBReakDemo'
+// import HorizontalTimeline from './component/timeline/HorizontalTimeline'
+import Timeline from './component/timeline/Timeline'
 // import ElevationDemo from './map/elevation/ElevationDemo'
 // import IndiaMap from './map/IndiaMap'
 // import SpinnerInputField from './component/SpinnerInputField'
@@ -16,11 +18,13 @@ createRoot(document.getElementById('root')!).render(
     {/* <GroupLayerDemo /> */}
     {/* <IndiaLocationMap /> */}
     {/* <ArcgisClassBreak /> */}
-    <ClassBReakDemo />
+    {/* <ClassBReakDemo /> */}
     {/* <ElevationDemo /> */}
     {/* <IndiaMap /> */}
     {/* <div className='spinner-input-section'>
     <SpinnerInputField />
     </div> */}
+    {/* <HorizontalTimeline /> */}
+    <Timeline />
   </StrictMode>,
 )

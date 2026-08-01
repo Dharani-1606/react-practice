@@ -8,6 +8,27 @@ import Point from "@arcgis/core/geometry/Point";
 import TimeSlider from "@arcgis/core/widgets/TimeSlider";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils";
 
+// const now = useMemo(() => new Date(), []); // Current time
+// const startTime = useMemo(
+//   () => new Date(now.getTime() - 10 * 60 * 1000),
+//   [now]
+// ); // Start = Now -10 mins
+// const endTime = useMemo(
+//   () => new Date(now.getTime() + 10 * 60 * 1000),
+//   [now]
+// ); // End = Now +10 mins
+// const interval = (endTime.getTime() - startTime.getTime()) / 3;
+// const timeStops: Date[] = [
+//   new Date(startTime),
+//   new Date(startTime.getTime() + interval),
+//   new Date(startTime.getTime() + interval * 2),
+//   new Date(endTime)
+// ];
+
+const currentTimestamp = Date.now(); // milliseconds
+const startTimestamp = currentTimestamp - 10 * 60 * 1000; // -10 minutes
+const endTimestamp = startTimestamp + 60 * 60 * 1000; // +1 hour from start
+
 export default function TimelineSlider() {
   const mapDiv = useRef(null);
 
@@ -20,20 +41,12 @@ export default function TimelineSlider() {
     });
   }
 
-  // Current time
-  const now = useMemo(() => new Date(), []);
-
-  // Start = Now -10 mins
-  const startTime = useMemo(
-    () => new Date(now.getTime() - 10 * 60 * 1000),
-    [now]
-  );
-
-  // End = Now +10 mins
-  const endTime = useMemo(
-    () => new Date(now.getTime() + 10 * 60 * 1000),
-    [now]
-  );
+  const timeStops: number[] = [
+    startTimestamp,
+    startTimestamp + 20 * 60 * 1000,
+    startTimestamp + 40 * 60 * 1000,
+    endTimestamp
+  ];
 
   useEffect(() => {
     if (!mapDiv.current) return;
@@ -124,40 +137,55 @@ export default function TimelineSlider() {
         view,
         mode: "cumulative-from-start",
         fullTimeExtent: {
-          start: startTime,
-          end: endTime
+          start: new Date(startTimestamp),
+          end: new Date(endTimestamp)
         },
         timeExtent: {
           start: null,
-          end: now
+          end: new Date(currentTimestamp)
         },
         stops: {
           interval: {
-            value: 5,
+            value: 1,
             unit: "seconds"
+          }
+        },
+        tickConfigs: [
+          {
+            mode: "position",
+            values: timeStops.map((ts) => new Date(ts)),
+            labelsVisible: true,
+            labelFormatFunction: (value) => {
+              const date = new Date(value);
+              return formatDateTime(date as Date);
+            }
+          }
+        ],
+        labelFormatFunction: (value, type, element) => {
+          switch (type) {
+            case "min":
+            case "max":
+              if (element) {
+                element.setAttribute("style", "color: orange");
+                element.innerText = formatDateTime(value as Date);
+              }
+              break;
+            case "extent":
+              if (element) {
+                const d = value as Date[];
+                element.setAttribute("style", "color: orange");
+                element.innerText = `${Date.now()}` + " | " + formatDateTime(d[d.length - 1]);
+              }
+              break;
+            default:
+              break;
           }
         }
       });
-      
-      setTimeout(() => {
-        const minDate = document.querySelector(".esri-time-slider__min-date");
-        const maxDate = document.querySelector(".esri-time-slider__max-date");
-
-        if (minDate) {
-          minDate.textContent = formatDateTime(startTime);
-        }
-
-        if (maxDate) {
-          maxDate.textContent = formatDateTime(endTime);
-        }
-      }, 200);
-
+      if (!slider) return;
+      slider.play();
       view.ui.add(slider, "bottom-left");
 
-      // Synchronize map with slider
-      slider.watch("timeExtent", (extent) => {
-        view.timeExtent = extent;
-      });
       reactiveUtils.watch(
         () => view.timeExtent,
         (timeExtent) => {
